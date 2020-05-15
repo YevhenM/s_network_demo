@@ -1,0 +1,25 @@
+.container{
+  display: flex;
+  justify-content: center;
+}
+.app-wrapper{
+  display: grid;
+  grid-template-rows: 100px 1fr;
+  grid-template-columns: 2fr 10fr;
+  grid-gap: 5px;
+
+  grid-template-areas:
+  "h h"
+  "n c";
+  width: 1200px;
+  margin: 0 auto;  
+}
+
+.app-wrapper-content {
+  grid-area: c;
+  background: rgb(219, 223, 221);
+}
+
+
+
+
