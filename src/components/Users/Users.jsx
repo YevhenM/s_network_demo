@@ -33,6 +33,7 @@ let Users = (props) => {
 
         <Pagenator currentPage={props.currentPage}
                    onPageChanged={props.onPageChanged}
+                   onMousePageChanged={props.onMousePageChanged}
                    totalUsersCount={props.totalUsersCount}
                    pageSize={props.pageSize}
                     />
@@ -74,6 +75,7 @@ let Users = (props) => {
         }
         <Pagenator currentPage={props.currentPage}
                    onPageChanged={props.onPageChanged}
+                   onMousePageChanged={props.onMousePageChanged}
                    totalUsersCount={props.totalUsersCount}
                    pageSize={props.pageSize}
         />

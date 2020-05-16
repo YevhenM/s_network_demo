@@ -19,6 +19,7 @@ import {
     getUsers
 } from "../../redux/users-selectors";
 
+let timerId = 0
 
 class UsersContainer extends React.Component {
     componentDidMount() {
@@ -28,8 +29,13 @@ class UsersContainer extends React.Component {
     onPageChanged = (pageNumber) => {
         this.props.setCurrentPage(pageNumber)
         this.props.getUsers(pageNumber, this.props.pageSize);
+    };
+    onMousePageChanged = (deltaY, currentPage) => {
+        clearTimeout(timerId)
+        currentPage = currentPage - (deltaY/100)
+        this.props.setCurrentPage(currentPage)
+        timerId = setTimeout(() => this.props.getUsers(currentPage, this.props.pageSize), 700)
     }
-
     render() {
         return <>
             {this.props.isFetching ? <Preloader /> : null}
@@ -38,6 +44,7 @@ class UsersContainer extends React.Component {
                           currentPage={this.props.currentPage}
                           users={this.props.users}
                           onPageChanged={this.onPageChanged}
+                          onMousePageChanged={this.onMousePageChanged}
                           unfollowThunk={this.props.unfollowThunk}
                           followThunk={this.props.followThunk}
                           toggleFollowingProgress={this.props.toggleFollowingProgress}

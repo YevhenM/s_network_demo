@@ -35,7 +35,7 @@ let Pagenator = (props) => {
 
 
     return <div>
-        <div className={s.pageSelector}>
+        <div className={s.pageSelector} onWheel={(e) => (props.onMousePageChanged(e.deltaY, props.currentPage))}>
             <span>Page: </span>
             <div className={s.divide}></div>
             {arr.map(p=>{
@@ -49,3 +49,5 @@ let Pagenator = (props) => {
 }
 
 export default Pagenator;
+
+//(e) => (e.deltaY>0? props.onPageChanged(props.currentPage-1):props.onPageChanged(props.currentPage+1))
