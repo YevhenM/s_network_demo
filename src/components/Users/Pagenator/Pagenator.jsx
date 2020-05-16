@@ -31,11 +31,11 @@ let Pagenator = (props) => {
     let pagesCount = Math.ceil(props.totalUsersCount / props.pageSize);
 
 
-    let arr = pagesList(pagesCount, props.currentPage, 1)
+    let arr = pagesList(pagesCount, props.currentPage, 7)
 
 
     return <div>
-        <div className={s.pageSelector} onWheel={(e) => (props.onMousePageChanged(e.deltaY, props.currentPage))}>
+        <div className={s.pageSelector} onWheel={(e) => (props.onMousePageChanged(e.deltaY, props.currentPage, pagesCount))}>
             <span>Page: </span>
             <div className={s.divide}></div>
             {arr.map(p=>{

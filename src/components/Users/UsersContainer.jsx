@@ -30,9 +30,11 @@ class UsersContainer extends React.Component {
         this.props.setCurrentPage(pageNumber)
         this.props.getUsers(pageNumber, this.props.pageSize);
     };
-    onMousePageChanged = (deltaY, currentPage) => {
+    onMousePageChanged = (deltaY, currentPage, maxPageNumber) => {
         clearTimeout(timerId)
         currentPage = currentPage - (deltaY/100)
+        if (currentPage<1) {currentPage = 1}
+        if (currentPage>maxPageNumber) {currentPage=maxPageNumber}
         this.props.setCurrentPage(currentPage)
         timerId = setTimeout(() => this.props.getUsers(currentPage, this.props.pageSize), 700)
     }
