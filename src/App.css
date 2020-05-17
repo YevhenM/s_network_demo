@@ -4,21 +4,24 @@
 }
 .app-wrapper{
   display: grid;
-  grid-template-rows: 100px 1fr;
-  grid-template-columns: 2fr 10fr;
+  grid-template-rows: 80px 1fr;
+  grid-template-columns: 200px 645px;
   grid-gap: 5px;
 
   grid-template-areas:
   "h h"
   "n c";
-  width: 1200px;
+  width: 850px;
   margin: 0 auto;  
 }
 
 .app-wrapper-content {
   grid-area: c;
-  background: rgb(219, 223, 221);
+  background: #E9EBEE;
+  min-height: 100vh;
 }
+
+
 
 
 

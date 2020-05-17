@@ -19,7 +19,7 @@ import {
     getUsers
 } from "../../redux/users-selectors";
 
-let timerId = 0
+let timerId
 
 class UsersContainer extends React.Component {
     componentDidMount() {

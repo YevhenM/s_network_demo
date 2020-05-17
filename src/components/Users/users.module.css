@@ -8,12 +8,12 @@
 
 .userBox {
     display: flex;
-    background: #EEE2D4;
-    width: 800px;
+    background: #fff;
+    width: 624px;
     margin: 10px;
     padding-bottom: 5px;
     overflow: hidden;
-    border-radius: 20px;
+    border-radius: 0px;
 }
 
 .userPicAndButton{
@@ -45,8 +45,8 @@
 
 .userName{
     padding-top: 12px;
-    color: #554b33;
-    font-weight: 800;
+    color: #4a4a4a;
+    font-weight: 700;
     font-size: 18px;
 
 }

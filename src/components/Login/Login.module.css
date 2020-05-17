@@ -1,0 +1,13 @@
+.loginBox{
+
+    display: flex;
+    justify-content: center;
+}
+
+.item{
+    align-self: center;
+    padding: 20px 50px 50px 50px;
+    border: 1px solid #b9b9b9;
+    margin: 20px;
+
+}

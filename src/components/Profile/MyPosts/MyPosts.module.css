@@ -4,12 +4,12 @@
   }
 
 .textAreaNewPost{
-    margin: 10px auto auto 100px;
-    min-width: 540px;
+    margin: 10px auto auto 72px;
+    min-width: 521px;
     max-width: 760px;
-    min-height: 60px;
+    min-height: 40px;
     background: #fffded;
-    border-radius: 20px;
+    border-radius: 5px;
     padding: 20px;
     color: rgb(104, 101, 60);
     font-size: 14px;
@@ -19,11 +19,13 @@
 
 .buttonBox{
     display: flex;
-
+    justify-content: flex-end;
 }
 
 .buttonBox>div{
-    padding-left: 620px
+    /*padding-left: 620px*/
+    display: flex;
+    justify-content: flex-end;
 }
 
 .buttonBox button{
@@ -31,5 +33,6 @@
     font-size: 12px;
     font-weight: 600;
     padding: 5px;
+    margin-right: 15px;
     background: #fffded;
 }

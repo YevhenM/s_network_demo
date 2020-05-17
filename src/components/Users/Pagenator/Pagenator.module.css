@@ -26,7 +26,7 @@
 .selectedPage{
     font-weight: bold;
     color: #DBDFDD;
-    background-color: #554B33;
+    background-color: #4267B2;
     width: 30px;
     height: 30px;
     text-align: center;
@@ -47,31 +47,26 @@
 }
 
 .pageSelector{
-    margin-left: 116px;
+    /*margin-left: 116px;*/
     display: flex;
     align-items: center;
     height: 50px;
+    justify-content: center;
 }
 
 .pageSelector>div{
-
     cursor: pointer;
 }
 
-/*.location{
+.pageSelectorContent{
+    display: flex;
+    align-items: center;
     font-size: 10px;
-    padding-left: 5px;
-    !*background: orange;*!
-}*/
+}
 
-/*.userName{
-    padding-top: 12px;
-    color: #554b33;
-    font-weight: 800;
-    font-size: 18px;
 
-}*/
 
+/*
 .status{
     color: #4B676A;
     font-size: 14px;
@@ -82,4 +77,4 @@
 
 .butFolow{
     color: #f00
-}
+}*/
