@@ -22,8 +22,11 @@ const LoginForm = (props) => {
                 <div>
                     <Field placeholder={'Password'} name={'password'} component={Input} validate={required} type={'password'}/>
                 </div>
+                <br/>
                 <div>
-                    <Field component={Input} name={'rememberMe'} type={'checkbox'} /> remember me
+
+                    <Field component={Input} name={'rememberMe'} type={'checkbox'}/><span>remember me</span>
+
                 </div>
                 { props.error && <div className={s.formSummaryError}>{props.error}</div> }
                 <div>
@@ -47,15 +50,20 @@ const Login = (props) => {
         return <Redirect to={'/profile'} />
     }
 
-    return <div className={ss.loginBox}>
-        <div></div>
+    return (
+        <div className={ss.loginBox}>
+
         <div className={ss.item}>
             <h2>Login</h2>
             <LoginReduxForm onSubmit={onSubmit} />
         </div>
-        <div></div>
+        <div>
+            <h4>Demo SocialNetwork</h4>
+            <p>Frontend developer - Yevhen Marukhnyak</p>
+            <p>Powered - React, Redux</p>
+        </div>
     </div>
-}
+    )}
 
 
 const mapStateToProps =(state) => ({

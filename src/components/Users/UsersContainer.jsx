@@ -19,7 +19,8 @@ import {
     getUsers
 } from "../../redux/users-selectors";
 
-let timerId
+let timerId=0
+let stepWhellScrolling = 1
 
 class UsersContainer extends React.Component {
     componentDidMount() {
@@ -27,16 +28,19 @@ class UsersContainer extends React.Component {
 
     }
     onPageChanged = (pageNumber) => {
+        stepWhellScrolling=1
         this.props.setCurrentPage(pageNumber)
         this.props.getUsers(pageNumber, this.props.pageSize);
+
     };
     onMousePageChanged = (deltaY, currentPage, maxPageNumber) => {
+        if (timerId !=0) {stepWhellScrolling=stepWhellScrolling+0.5} else {stepWhellScrolling=1}
         clearTimeout(timerId)
-        currentPage = currentPage - (deltaY/100)
+        currentPage = Math.ceil(currentPage - (deltaY/100)*stepWhellScrolling)
         if (currentPage<1) {currentPage = 1}
         if (currentPage>maxPageNumber) {currentPage=maxPageNumber}
         this.props.setCurrentPage(currentPage)
-        timerId = setTimeout(() => this.props.getUsers(currentPage, this.props.pageSize), 700)
+        timerId = setTimeout(() => {this.props.getUsers(currentPage, this.props.pageSize); timerId=0}, 700)
     }
     render() {
         return <>

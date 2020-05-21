@@ -11,13 +11,14 @@ let maxLength10 = maxLengthCreator(255)
 
 const MyPosts = (props) => {
 
+    console.log('USER PHOTO >>> ', props.userPhoto)
     let onDeletePost = (id) => {
         console.log(id)
         let idToRemove = id;
         props.deletePost(idToRemove);
     }
 
-    let postsElements = props.postsData.map(p => <Post text={p.text} likes={p.likes} comments={p.comments} key={p.id} onDeletePost={onDeletePost} id={p.id}/>);
+    let postsElements = props.postsData.map(p => <Post text={p.text} likes={p.likes} comments={p.comments} key={p.id} onDeletePost={onDeletePost} id={p.id} userPhoto={props.userPhoto}/>);
 
     let newPostElement = React.createRef()
 

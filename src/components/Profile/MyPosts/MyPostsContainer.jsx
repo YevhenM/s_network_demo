@@ -9,6 +9,7 @@ let mapStateToProps = (state) => {
     return {
         postsData: state.profilePage.postsData,
         newPostText: state.profilePage.newPostText,
+        userPhoto: state.profilePage.profile.photos.small
     }
 }
 let mapDispatchToProps = (dispatch) => {

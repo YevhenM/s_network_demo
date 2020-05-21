@@ -1,6 +1,7 @@
 .loginBox{
 
     display: flex;
+    flex-direction: column;
     justify-content: center;
 }
 
@@ -9,5 +10,13 @@
     padding: 20px 50px 50px 50px;
     border: 1px solid #b9b9b9;
     margin: 20px;
+}
 
+h4 {
+    color: #4267B2;
+}
+
+p {
+    text-align: center;
+    font-size: 12px;
 }

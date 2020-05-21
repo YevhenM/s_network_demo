@@ -8,6 +8,7 @@ import {BrowserRouter, Route, withRouter} from "react-router-dom";
 //import DialogsContainer from "./components/Dialogs/DialogsContainer";
 import UsersContainer from "./components/Users/UsersContainer";
 import ProfileContainer from "./components/Profile/ProfileContainer";
+import SettingsContainer from "./components/Settings/SettingsContainer";
 import HeaderContainer from "./components/Header/HeaderContainer";
 import Login from "./components/Login/Login";
 import {connect, Provider} from "react-redux";
@@ -42,7 +43,7 @@ class App extends Component {
                     <Route path="/profile/:userId?" render={() => <ProfileContainer/>}/>
                     <Route path="/news" component={News}/>
                     <Route path="/music" component={Music}/>
-                    <Route path="/settings" component={Settings}/>
+                    <Route path="/settings" render={() => <SettingsContainer/>}/>
                     <Route path="/dialogs" render={() => {
                         return<React.Suspense fallback={<div>Loading...</div>}>
                             <DialogsContainer/>
@@ -68,7 +69,7 @@ let AppContainer = compose (
     connect(mapStateToProps, {initializeApp} ))(App);
 
 let SamuraiJSApp = (props) => {
-    return <BrowserRouter>
+    return <BrowserRouter basename={process.env.PUBLIC_URL}>
         <Provider store={store}>
             <AppContainer />
         </Provider>
