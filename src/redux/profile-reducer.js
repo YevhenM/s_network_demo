@@ -1,4 +1,5 @@
 import {profileAPI, usersAPI} from "../api/api";
+import profileImage from '../components/assets/images/maleUser.jpg'
 
 const ADD_POST = 'profile/ADD-POST';
 const UPDATE_NEW_POST_TEXT = 'profile/UPDATE-NEW-POST-TEXT';
@@ -6,6 +7,7 @@ const DELETE_POST = 'profile/DELETE-POST';
 const SET_USER_PROFILE = 'profile/SET-USER-PROFILE';
 const SET_STATUS = 'profile/SET_STATUS';
 const SAVE_PHOTO_SUCCESS = 'profile/SAVE_PHOTO_SUCCESS'
+
 
 let initialState = {
     postsData: [
@@ -22,7 +24,7 @@ let initialState = {
     ],
     newPostText: "new post",
     profile: {
-        aboutMe: "I lern React!",
+        aboutMe: "About me",
         contacts: {
             facebook: 'facebook.com',
             website: null,
@@ -35,13 +37,13 @@ let initialState = {
         },
         lookingForAJob: true,
         LookingForAJobDescription: "Looking for a cool job!",
-        fullName: 'John Smith',
-        userId: 5555,
+        fullName: 'User Name',
+        userId: null,
         photos: {
-            small: 'https://s23527.pcdn.co/wp-content/uploads/2017/01/85.png',
-            large: 'https://s23527.pcdn.co/wp-content/uploads/2017/01/85.png'
+            small: profileImage,
+            large: profileImage
         },
-    status: 'Hello friends!!!'
+    status: 'Ampty status'
     }
 };
 
@@ -76,6 +78,7 @@ const profileReducer = (state = initialState, action) => {
             return {...state, status: action.status}
         case SAVE_PHOTO_SUCCESS:
             return {...state, profile: {...state.profile, photos: action.photos}}
+
 
 
         default:
@@ -125,6 +128,14 @@ export const savePhoto = (file) => async (dispatch) => {
     const response = await profileAPI.savePhoto(file)
     if (response.data.resultCode === 0) {
         dispatch(savePhotoSuccess(response.data.data.photos));
+    }
+}
+
+export const saveProfile = (profile) => async (dispatch, getState) => {
+    const userId = getState().auth.userId
+    const response = await profileAPI.saveProfile(profile)
+    if (response.data.resultCode === 0) {
+        dispatch (getUserProfile(userId))
     }
 }
 

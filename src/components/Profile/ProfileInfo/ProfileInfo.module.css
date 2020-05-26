@@ -16,11 +16,11 @@
   .userpic{
     display: flex;
     position: relative;
+    border-radius: 6%;
     overflow: hidden;
   }
 
   .userpic>img{
-    border-radius: 3%;
     width: 165px;
     height: 165px;
   }
@@ -78,8 +78,47 @@
     text-align: right;
   }
 
-  .status span{
-    font-size: 8px;
+  .status {
+    font-size: 14px;
     font-style: italic;
+    font-weight: bold;
   }
 
+
+  .editModeButtonBloc{
+    display: flex;
+  }
+
+  .editModeButtonLabel{
+    height: 20px;
+    width: 100%;
+    /*background: rgba(0,0,0, 0.4);*/
+    cursor: pointer;
+    text-align: center;
+    color: rgba(0,0,0, 0.1);
+    transition: color 0.4s;
+  }
+
+  .editModeButton{
+    display: none;
+
+  }
+
+  .editModeButtonLabel:hover {
+    color: rgba(0,0,0, 1);
+  }
+
+  .formItem {
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  .formItem>span {
+    display: flex;
+    padding: 3px 0px 3px 6px;
+  }
+
+  .formItem>div {
+    display: flex;
+    padding: 3px 0px 3px 6px;
+  }

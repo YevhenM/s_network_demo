@@ -68,3 +68,15 @@
 .butFolow{
     color: #f00
 }
+
+.searchModule{
+    display: flex;
+    height: 40px;
+    align-items: center;
+    border-bottom: solid white 3px;
+    justify-content: flex-end;
+}
+
+.searchModule>div{
+    padding: 0px 11px 0px 20px
+}

@@ -11,7 +11,6 @@ let maxLength10 = maxLengthCreator(255)
 
 const MyPosts = (props) => {
 
-    console.log('USER PHOTO >>> ', props.userPhoto)
     let onDeletePost = (id) => {
         console.log(id)
         let idToRemove = id;

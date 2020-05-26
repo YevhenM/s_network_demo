@@ -9,8 +9,9 @@ const instance = axios.create({
 })
 
 export const usersAPI = {
-    getUsers(currentPage = 1, pageSize = 6) {
-        return instance.get(`users?page=${currentPage}&count=${pageSize}`)
+    getUsers(currentPage = 1, pageSize = 6, term="", friend=null) {
+
+        return instance.get(`users?page=${currentPage}&count=${pageSize}&term=${term}&friend=${friend}`)
             .then(response => response.data);
     },
     followUserRequest(userId) {
@@ -50,6 +51,9 @@ export const profileAPI = {
             }
         })
         /*.then(response => response.data);*/
+    },
+    saveProfile (profile) {
+        return instance.put(`profile`, profile)
     }
 
 }

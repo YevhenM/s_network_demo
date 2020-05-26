@@ -5,27 +5,49 @@ import {NavLink} from "react-router-dom";
 let Pagenator = (props) => {
 
     function pagesList(numberOfPages, currentPage, listLenght) {
-        let array = []
-        let centerPage = currentPage
-        if (centerPage<listLenght + 1) {centerPage = listLenght + 1}
-        if (centerPage>numberOfPages - listLenght) {centerPage = numberOfPages - listLenght}
-        let startPageBlock = centerPage - listLenght
-        let finishPageBlock = centerPage + listLenght
+        let simpleList=false
+        let absoluteListLenght = listLenght*2 + 5
+        if (absoluteListLenght>=numberOfPages) {
+            absoluteListLenght=numberOfPages;
+            simpleList=true}
 
-        let dStart = 0
-        let dFinish = 0
-        startPageBlock>1 ? dFinish = dFinish : dFinish++
-        startPageBlock>2 ? dFinish = dFinish : dFinish++
-        finishPageBlock<numberOfPages-1 ? dStart = dStart : dStart++
-        finishPageBlock<numberOfPages ? dStart = dStart : dStart++
+        let startPage = 1;
 
-        if (startPageBlock>1) {array.push(1)}
-        if (startPageBlock>2)  {array.push('...')}
-        for (let i=startPageBlock-dStart; i<=finishPageBlock+dFinish; i++) {array.push(i)}
-        if (finishPageBlock<numberOfPages-1)  {array.push('...')}
-        if (finishPageBlock<numberOfPages)  {array.push(numberOfPages)}
+        if (simpleList) {return iterationList (absoluteListLenght, 1, currentPage)}
 
-        return array
+        let prefix = false
+        let sufix = false
+
+        if (currentPage>listLenght+3 && !simpleList) {prefix=true}
+        if (currentPage<numberOfPages-listLenght-2 && !simpleList) {sufix=true}
+
+        if (sufix && !prefix) {
+            let b = iterationList (absoluteListLenght-2, 1, currentPage)
+            b.push("...", numberOfPages)
+            return b}
+
+        if (!sufix && prefix) {
+            let c = [1, "..."]
+            let b = c.concat(iterationList (absoluteListLenght-2, numberOfPages-listLenght*2-2, currentPage))
+            return b
+        }
+
+        if(sufix && prefix) {
+            let c = [1, "..."]
+            let b = c.concat(iterationList (absoluteListLenght-4, currentPage-listLenght, currentPage))
+            b.push("...", numberOfPages)
+            return b
+        }
+
+        // ============= function iteration List
+        function iterationList (elements, startElement, currentPage) {
+            let arr0 =[]
+            for (let i=startElement; i<elements+startElement; i++){
+
+                arr0.push(i)
+            }
+            return arr0
+        }
     }
 
     let pagesCount = Math.ceil(props.totalUsersCount / props.pageSize);

@@ -2,20 +2,22 @@
     grid-area: h;
     background: #4267B2;
     display: flex;
-    height: 80px;
+    height: 44px;
+    align-items: center;
   
   }
   
   .header img{
-    width: 60px;
-    height: 60px;
+    width: 35px;
+    height: 35px;
     display: flex;
-    margin: 10px 10px 10px 40px;
+    margin: 0px 10px 0px 40px;
     align-self: center;
+    border-radius: 5px;
   }
 
   h1{
-      font-size: 30px;
+      font-size: 25px;
       font-style: italic;
       color: #f9f9f9;
       align-self: center;
@@ -24,6 +26,7 @@
 
   h1>span{
       text-decoration: line-through;
+      color: #bfd3ff;
       /*font-weight: lighter;*/
   }
 
@@ -43,4 +46,5 @@
 }
 .loginBox div span {
     cursor: pointer;
+
 }

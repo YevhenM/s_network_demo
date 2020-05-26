@@ -4,8 +4,15 @@ import {
     setUsers,
     setCurrentPage,
     setTotalUsersCount,
-    toggleIsFetching, toggleFollowingProgress, getUsersThunkCreator, unfollowUserThunkCreator, followUserThunkCreator
+    setFriendsFilter,
+    toggleIsFetching,
+    toggleFollowingProgress,
+    getUsersThunkCreator,
+    unfollowUserThunkCreator,
+    followUserThunkCreator,
+    setFilterByStr
 } from "../../redux/users-reducer";
+import {getAuthUserData} from "../../redux/auth-reducer"
 import Users from "./Users";
 import Preloader from "../common/Preloader/Preloader";
 import {compose} from "redux";
@@ -22,17 +29,39 @@ import {
 let timerId=0
 let stepWhellScrolling = 1
 
+
+
+
 class UsersContainer extends React.Component {
+
+
     componentDidMount() {
         this.props.getUsers(this.props.currentPage, this.props.pageSize);
 
     }
+
     onPageChanged = (pageNumber) => {
         stepWhellScrolling=1
         this.props.setCurrentPage(pageNumber)
         this.props.getUsers(pageNumber, this.props.pageSize);
 
     };
+
+    onFrinedsFilterChange = (e) => {
+        console.log("filter .... >>>> ", e)
+        this.props.setFriendsFilter(e)
+        this.props.getUsers(1, this.props.pageSize)
+    }
+
+    onFilterByStr = (e) => {
+        console.log("filter .... >>>> ", e)
+        this.props.setFilterByStr(e)
+        this.props.getUsers(1, this.props.pageSize)
+    }
+
+
+    //setFilterByStr
+
     onMousePageChanged = (deltaY, currentPage, maxPageNumber) => {
         if (timerId !=0) {stepWhellScrolling=stepWhellScrolling+0.5} else {stepWhellScrolling=1}
         clearTimeout(timerId)
@@ -54,7 +83,12 @@ class UsersContainer extends React.Component {
                           unfollowThunk={this.props.unfollowThunk}
                           followThunk={this.props.followThunk}
                           toggleFollowingProgress={this.props.toggleFollowingProgress}
-                          followingInProgress={this.props.followingInProgress}/>
+                          followingInProgress={this.props.followingInProgress}
+                          isAuth={this.props.isAuth}
+                          onFrinedsFilterChange={this.onFrinedsFilterChange}
+                          filterFriends={this.props.filterFriends}
+                          onFilterByStr={this.onFilterByStr}
+            />
          </>
     }
 }
@@ -71,19 +105,25 @@ class UsersContainer extends React.Component {
 }*/
 
 let mapStateToProps = (state) => {
+
     return {
+        someParameter: 10,
         users: getUsers(state),
         pageSize: getPageSize(state),
         totalUsersCount: getTotalUsersCount(state),
         currentPage: getCurrentPage(state),
         isFetching: getIsFetching(state),
-        followingInProgress: getFollowingInProgress(state)
+        followingInProgress: getFollowingInProgress(state),
+        isAuth: state.auth.isAuth,
+        filterFriends: state.usersPage.filterFriends
     }
 }
 
 export default compose (
     /*withAuthRedirect,*/
     connect(mapStateToProps, {
+        setFilterByStr,
+        setFriendsFilter,
         setUsers,
         setCurrentPage,
         setTotalUsersCount,
