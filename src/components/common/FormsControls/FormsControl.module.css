@@ -1,5 +1,11 @@
 .formControl{
+ display: flex;
+ justify-content: center;
+}
 
+.formControl div{
+    display: flex;
+    justify-content: center;
 }
 
 .formControl.error input,

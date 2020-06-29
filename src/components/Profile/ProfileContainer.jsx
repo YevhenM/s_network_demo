@@ -5,6 +5,7 @@ import {getStatus, getUserProfile, updateStatus, savePhoto, saveProfile} from ".
 import {withRouter} from "react-router-dom";
 import {withAuthRedirect} from "../../hoc/withAuthRedirect";
 import {compose} from "redux";
+import Preloader from "../common/Preloader/Preloader";
 
 
 
@@ -34,6 +35,7 @@ class ProfileContainer extends React.Component {
     render() {
         return (
             <div>
+                {this.props.isFetching ? <Preloader /> : null}
                 <Profile {...this.props} profile={this.props.profile}
                                         isOwner={!this.props.match.params.userId}
                                         status={this.props.status}
@@ -49,7 +51,8 @@ class ProfileContainer extends React.Component {
      profile: state.profilePage.profile,
      status: state.profilePage.status,
      authorizedUserId: state.auth.userId,
-     isAuth: state.auth.isAuth
+     isAuth: state.auth.isAuth,
+     isFetching: state.profilePage.profileIsFetching
  });
 
 export default compose(

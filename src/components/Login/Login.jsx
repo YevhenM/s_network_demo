@@ -61,6 +61,11 @@ const Login = (props) => {
             <h4>Demo SocialNetwork</h4>
             <p>Frontend developer - Yevhen Marukhnyak</p>
             <p>Powered - React, Redux</p>
+            <br/>
+            <p><b> Test user </b></p>
+            <hr width="50%"/>
+            <p>Login: free@samuraijs.com </p>
+            <p>Password: free </p>
         </div>
     </div>
     )}

@@ -20,6 +20,9 @@ const Dialogs = (props) => {
 
     return (
         <div className={s.dialogs}>
+
+            <h4> !!! TEST !!! </h4>
+
             <div className={s.dialogsItems}>
                 {dialogsElements}                
             </div>

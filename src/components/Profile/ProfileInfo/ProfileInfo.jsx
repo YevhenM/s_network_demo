@@ -50,13 +50,14 @@ const ProfileInfo = (props) => {
             />}
 
           {props.isOwner && <div className={s.editModeButtonBloc}>
-              <label htmlFor="editModeButton" className={s.editModeButtonLabel}>Edit user info
-                  <button className={s.editModeButton}
-                          id="editModeButton"
-                          onClick={()=>{editMode? setEditMode(false): setEditMode(true)}}>change data
-                  </button>
-              </label>
-          </div> }
+                              <label htmlFor="editModeButton" className={s.editModeButtonLabel}>{!editMode? 'Edit user info' : 'Cancel edit'}
+                                  <button className={s.editModeButton}
+                                          id="editModeButton"
+                                          onClick={()=>{editMode? setEditMode(false): setEditMode(true)}}>change data
+                                  </button>
+                              </label>
+                            </div>
+          }
       </div>
     );    
 }
@@ -82,7 +83,7 @@ const ProfileData = (props) => {
         </div>
 
         <div className={s.contacts}>
-            <ProfileStatusWithHooks status={props.status} updateStatus={props.updateStatus} className={s.status}/>
+            <ProfileStatusWithHooks status={props.status} updateStatus={props.updateStatus} isOwner={props.isOwner} className={s.status}/>
             <hr/>
             <div>{props.profile.lookingForAJob ? "I am looking for a job" : "I'm not looking for a job"}</div>
             <div>{props.profile.lookingForAJobDescription}</div>
@@ -96,35 +97,7 @@ const ProfileData = (props) => {
         </div>
     </div>
 }
-/*const ProfileDataForm = (props) => {
-    return <div className={s.profileinfoBox}>
-        <div className={s.avatarBlock}>
-            <div className={s.userpic}><img src={props.profile.photos.large || props.userPhoto} alt=""/>
-                {props.isOwner &&
-                <label htmlFor='file-upload' className={s.newImageButton}>NEW PHOTO<input id='file-upload'
-                                                                                          className={s.inputButton}
-                                                                                          type={'file'}
-                                                                                          onChange={props.onMainPhotoSelected}/></label>}
-            </div>
-            <div className={s.userName}>{props.profile.fullName}</div>
-            <span>About me EDIT MODE!!!:</span>
-            <div>{props.profile.aboutMe}</div>
-        </div>
 
-        <div className={s.contacts}>
-            <ProfileStatusWithHooks status={props.status} updateStatus={props.updateStatus} className={s.status}/>
-            <hr/>
-            <div>{props.profile.lookingForAJob ? "I am looking for a job" : "I'm not looking for a job"}</div>
-            <div>{props.profile.LookingForAJobDescription}</div>
-            <br/>
-            <b>Contacts:</b>
-
-            <div>{Object.keys(props.profile.contacts).map(key => {
-                return <Contact key={key} contactTitle={key} contactValue={props.profile.contacts[key]}/>
-            })}</div>
-        </div>
-    </div>
-}*/
 
 
 export default ProfileInfo;

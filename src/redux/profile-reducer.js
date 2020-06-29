@@ -7,6 +7,7 @@ const DELETE_POST = 'profile/DELETE-POST';
 const SET_USER_PROFILE = 'profile/SET-USER-PROFILE';
 const SET_STATUS = 'profile/SET_STATUS';
 const SAVE_PHOTO_SUCCESS = 'profile/SAVE_PHOTO_SUCCESS'
+const TOGGLE_IS_FETCHING = 'profile/TOGGLE_IS_FETCHING'
 
 
 let initialState = {
@@ -18,11 +19,12 @@ let initialState = {
             likes: "9",
             comments: "16"
         },
-        {id: 3, text: 'Anybody hear me?', likes: "6", comments: "0"},
-        {id: 2, text: 'Anybody hear me??', likes: "13", comments: "1"},
+        {id: 3, text: "At this time all posts it's the same for all users", likes: "6", comments: "0"},
+        {id: 2, text: "It's just for test. You can try to create new porst or delete anything", likes: "13", comments: "1"},
         {id: 1, text: 'London isn`t the Capital of Great Britain - is the Capital of United Kingdoom', likes: "716", comments: "123"}
     ],
     newPostText: "new post",
+    profileIsFetching: true,
     profile: {
         aboutMe: "About me",
         contacts: {
@@ -78,7 +80,8 @@ const profileReducer = (state = initialState, action) => {
             return {...state, status: action.status}
         case SAVE_PHOTO_SUCCESS:
             return {...state, profile: {...state.profile, photos: action.photos}}
-
+        case TOGGLE_IS_FETCHING:
+            return {...state, profileIsFetching: action.isFetching}
 
 
         default:
@@ -86,6 +89,8 @@ const profileReducer = (state = initialState, action) => {
     }
 
 }
+
+// --------------- Action Creators ---------------
 
 export const addPostActionCreator = (newPostText) => ({ type: ADD_POST, newPostText });
 
@@ -105,10 +110,17 @@ const setUserProfile = (profile) => ({type: SET_USER_PROFILE, profile})
 
 const setStatus = (status) => ({type: SET_STATUS, status})
 
+export const profileToggleIsFetching = (isFetching) => ({type: TOGGLE_IS_FETCHING, isFetching});
+
+
+// --------------- Thunks ---------------
 
 export const getUserProfile = (userId) => async (dispatch) => {
+        dispatch(profileToggleIsFetching(true))
         const response = await profileAPI.getUserProfile(userId)
                 dispatch(setUserProfile(response.data));
+                dispatch(profileToggleIsFetching(false))
+
     }
 
 

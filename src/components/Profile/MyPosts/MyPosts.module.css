@@ -4,9 +4,8 @@
   }
 
 .textAreaNewPost{
-    margin: 10px auto auto 72px;
-    min-width: 521px;
-    max-width: 760px;
+    margin: 10px auto 10 auto;
+    width: 475px;
     min-height: 40px;
     background: #fffded;
     border-radius: 5px;
@@ -14,8 +13,28 @@
     color: rgb(104, 101, 60);
     font-size: 14px;
     font-weight: 800;
-    position: relative;
+    display: flex;
+
 };
+
+.textAreaNewPost:hover{
+    border: 1px solid red;
+}
+
+
+
+.postsNewPostTextAreaBloc{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.postsNewPostTextAreaBloc div div {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
 
 .buttonBox{
     display: flex;
@@ -26,6 +45,7 @@
     /*padding-left: 620px*/
     display: flex;
     justify-content: flex-end;
+    padding: 0px 67px 0px 50px;
 }
 
 .buttonBox button{

@@ -1,6 +1,6 @@
 import React from 'react';
 import s from './MyPosts.module.css';
-import Post from './Post/Post.jsx';
+import Post from './Post/Post_1.jsx';
 import {Field, reduxForm} from "redux-form";
 import {required, maxLengthCreator} from "../../../utils/validators/validators";
 import {Textarea} from "../../common/FormsControls/FormsControl";
@@ -17,7 +17,14 @@ const MyPosts = (props) => {
         props.deletePost(idToRemove);
     }
 
-    let postsElements = props.postsData.map(p => <Post text={p.text} likes={p.likes} comments={p.comments} key={p.id} onDeletePost={onDeletePost} id={p.id} userPhoto={props.userPhoto}/>);
+    let postsElements = props.postsData.map(p => <Post text={p.text}
+                                                       likes={p.likes}
+                                                       comments={p.comments}
+                                                       key={p.id}
+                                                       onDeletePost={onDeletePost}
+                                                       id={p.id}
+                                                       userPhoto={props.userPhoto}
+                                                       userName={props.userName}/>);
 
     let newPostElement = React.createRef()
 
@@ -37,15 +44,6 @@ const MyPosts = (props) => {
     return (      
       <div>
 
-              {/*<div>
-                  <textarea onChange={onPostChange} name="" ref={newPostElement} cols="70" rows="4" value={props.newPostText} className={s.textAreaNewPost}/>
-              </div>
-              <div className={s.buttonBox}>
-                <div>
-                    <button onClick={onAddPost}>New post</button>
-                </div>
-              </div>*/}
-
               <AddNewPostRedux onSubmit={onAddPost} />
               <div className={s.posts}>
 
@@ -63,7 +61,7 @@ const MyPosts = (props) => {
 const AddNewPost = (props) => {
     return (
         <form onSubmit={props.handleSubmit}>
-            <div>
+            <div className={s.postsNewPostTextAreaBloc}>
                 <Field component={Textarea}
                        placeholder={'What are you thinking about?'}
                        name='newPostText'
